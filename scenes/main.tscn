@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4xbhjh3n0im0"]
+
+[ext_resource type="PackedScene" uid="uid://dim1q2ngrw7ix" path="res://scenes/board.tscn" id="1_3rjw1"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_ejke7"]
+[ext_resource type="PackedScene" uid="uid://dxocejp1ve88d" path="res://scenes/circle.tscn" id="2_tenta"]
+[ext_resource type="PackedScene" uid="uid://dx4o7fqi34xvu" path="res://scenes/cross.tscn" id="3_3wc68"]
+[ext_resource type="PackedScene" uid="uid://bs6d6drke2d7k" path="res://scenes/game_over_screen.tscn" id="5_0dqcb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v0ieh"]
+bg_color = Color(0, 0.666667, 0.803922, 1)
+border_width_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rbm2"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 5
+shadow_offset = Vector2(5, 5)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_ejke7")
+circle_scene = ExtResource("2_tenta")
+cross_scene = ExtResource("3_3wc68")
+
+[node name="Board" parent="." instance=ExtResource("1_3rjw1")]
+position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="SidePanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(300, 600)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v0ieh")
+
+[node name="ActivePlayer" type="Label" parent="SidePanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 100.0
+offset_bottom = 220.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 46
+text = "Next Player:"
+horizontal_alignment = 1
+
+[node name="NextPlayerPanel" type="Panel" parent="SidePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4rbm2")
+
+[node name="GameOverScreen" parent="." instance=ExtResource("5_0dqcb")]
+process_mode = 2
+
+[connection signal="end_state" from="." to="GameOverScreen" method="_on_main_end_state"]
+[connection signal="restart" from="GameOverScreen" to="." method="_on_game_over_screen_restart"]
