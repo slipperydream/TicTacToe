@@ -56,7 +56,7 @@ func _input(event):
 				# clear the next player panel
 				temp_marker.queue_free()
 				create_marker(active_player, player_panel_pos + Vector2i(cell_size/2, cell_size/2), true)
-				print(grid)
+				
 
 func new_game():
 	active_player = marker.values()[ randi() % marker.size() ]

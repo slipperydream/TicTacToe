@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://b4xbhjh3n0im0"]
 
 [ext_resource type="PackedScene" uid="uid://dim1q2ngrw7ix" path="res://scenes/board.tscn" id="1_3rjw1"]
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_ejke7"]
+[ext_resource type="Script" path="res://src/main.gd" id="1_ukrux"]
 [ext_resource type="PackedScene" uid="uid://dxocejp1ve88d" path="res://scenes/circle.tscn" id="2_tenta"]
 [ext_resource type="PackedScene" uid="uid://dx4o7fqi34xvu" path="res://scenes/cross.tscn" id="3_3wc68"]
 [ext_resource type="PackedScene" uid="uid://bs6d6drke2d7k" path="res://scenes/game_over_screen.tscn" id="5_0dqcb"]
@@ -24,7 +24,7 @@ shadow_size = 5
 shadow_offset = Vector2(5, 5)
 
 [node name="Main" type="Node"]
-script = ExtResource("1_ejke7")
+script = ExtResource("1_ukrux")
 circle_scene = ExtResource("2_tenta")
 cross_scene = ExtResource("3_3wc68")
 
